@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+      <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+    <meta charset="UTF-8">
+    <title>Ujonnan felvitt dolgozok</title>
+</head>
+<body>
+  <div id="content">
+            <img id="merlegkep" src="worker.png" alt="" width="320" height="220"/>    
+<h2>Uj dolgozot adtal hozza!</h2>
+
+
+        <b>Uj dolgozo neve: </b><span th:text="${newDolgozo.nev}"></span><br><br>
+                <b>Uj dolgozo eletkora: </b><span th:text="${newDolgozo.eletkor}"></span><br><br>
+        
+    <form action="http://localhost:8080">
+        <input type="submit" value="Vissza a fooldalra" />
+    </form>
+                        </div>
+</body>
+</html>

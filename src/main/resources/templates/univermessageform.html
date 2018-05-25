@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+     <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+    <meta charset="UTF-8">
+    <title>Uzenet</title>
+</head>
+<body>
+      <div id="content">
+            <img id="merlegkep" src="/info.png" alt="" width="320" height="220"/>   
+            
+            <h2>Figyelem!</h2><br>
+
+            <span th:text="${uzenet}"></span><br><br>
+                
+                
+                   <form action="http://localhost:8080">
+        <input type="submit" value="Vissza a fooldalra" />
+    </form>
+      </div>
+</form>
+</body>
+</html>

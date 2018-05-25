@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolgozo update</title>
+</head>
+<body>
+
+   <!-- <form action="#" th:action="@{/dolgozo/dolgozok/{path}(path=${id})}" th:object="${dolgozo}" method="post"> -->
+   
+     <form action="#" th:action="@{/dolgozo/dolgozok/{path}(path=${id})}" th:object="${dolgozo}" method="post">
+    
+       
+         <tr>
+            <td>DolgozoID:</td>
+            <td><input  th:value="${dolgozo.id}" type="text" name="editId" readonly="readonly"></td>
+          
+        </tr>
+       
+       
+        <h3><div    th:text="${dolgozo.nev}">nev</div>
+        <table>
+                  <tr>
+                <td>title neve:</td>
+                <td><input type="text" th:field="*{nev}"></td>
+                <td th:if="${#fields.hasErrors('nev')}" th:errors="*{nev}">title hiba</td>
+            </tr>
+                
+                 <tr>
+                <td>title neve:</td>
+                <td><input type="text" th:field="*{eletkor}"></td>
+                <td th:if="${#fields.hasErrors('eletkor')}" th:errors="*{eletkor}">title hiba</td>
+            </tr>
+            
+            
+            
+        <tr>
+            <td><button type="submit">Add</button> </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

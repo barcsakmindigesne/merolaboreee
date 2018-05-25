@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Uj dolgozo hozzaadasa</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+    </head>
+    <body>
+            <div id="content">
+            <img id="merlegkep" src="worker.png" alt="" width="320" height="220"/>
+        <form action="#" th:action="@{/dolgozo}" th:object="${dolgozoModel}" method="post">
+            <h2>Uj dolgozo hozzaadasa</h2>
+            <br>
+            <table>
+            <tr>
+                <td>Nev</td>
+                <td><input type="text" th:field="*{nev}"></td>
+                <td th:if="${#fields.hasErrors('nev')}" th:errors="*{nev}">title hiba</td>
+            </tr>
+                
+                 <tr>
+                <td>Eletkor</td>
+                <td><input type="text" th:field="*{eletkor}"></td>
+                <td th:if="${#fields.hasErrors('eletkor')}" th:errors="*{eletkor}">title hiba</td>
+            </tr>
+                <tr><tr>
+            <tr align="right">
+                <td></td>
+                <td></td>
+                <td><button type="submit">Mentes</button> </td>
+            </tr>
+        </table>
+                </div>
+    </body>
+</html>

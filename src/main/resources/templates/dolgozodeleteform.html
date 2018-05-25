@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+     <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+    <meta charset="UTF-8">
+    <title>Dolgozo torles</title>
+</head>
+<body>
+      <div id="content">
+            <img id="merlegkep" src="/worker.png" alt="" width="320" height="220"/>   
+            
+            <h2>Egy dolgozot keszulsz torolni! Csak olyan ID-t adhatsz meg, ami letezik! </h2>
+            <h4 style="color: red">Ha egy dolgozot torolsz, a meresei is torlodnek!</h4>
+<form action="#" th:action="@{/dolgozo/delete}" method="post">
+    <table>
+        <tr>
+            <td>Torlendo dolgozo azonositoja(ID)</td>
+            <td><input type="text" name="deleteId"></td>
+          
+        </tr>
+
+        <tr align="right">
+            <td>
+            <td><button type="submit">Torles!</button> </td>
+        </tr>
+    </table>
+      </div>
+</form>
+</body>
+</html>

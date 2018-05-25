@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <div id="content">
+            <img id="merlegkep" src="/meas.jpg" alt="" width="320" height="220"/> 
+<h3>Meresek:</h3>
+
+    <div    th:each="meres : ${meresList}">
+     <b style="color: royalblue"   th:text="${meres.id}">id</b><b>. sorszamu meres (ID) adatai:</b><br>
+       <b style="font-style: italic">Alkatresz cikkszama: </b><b style="color: royalblue"    th:text="${meres.alkatreszszam}">a</b><br>
+           <b style="font-style: italic">Mert hossz(mm): </b><b style="color: royalblue"   th:text="${meres.hossz}">e</b><br>
+            <b style="font-style: italic">Mert suly(g): </b><b style="color: royalblue"    th:text="${meres.suly}">a</b><br>
+            <b style="font-style: italic">Hozzaadas idopontja: </b><b style="color: royalblue"    th:text="${meres.idopont}">a</b><br>
+                <b style="font-style: italic">Hozzaado dolgozo: </b><b style="color: royalblue"    th:text="${meres.dolgozo.nev}">a</b><br>
+  
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                <form action="#" th:action="@{/meres/list}" method="post">
+   
+          
+            <td><input  th:value="${meres.id}" type="hidden" name="deleteId"  readonly="readonly"></td>
+          
+ 
+
+            <button type="submit">Torles!</button> 
+     
+   
+            </form>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <hr>
+                    </div>
+
+<form action="http://localhost:8080">
+    <input type="submit" value="Vissza a fomenube" />
+</form>
+     </div>
+</body>
+</html>

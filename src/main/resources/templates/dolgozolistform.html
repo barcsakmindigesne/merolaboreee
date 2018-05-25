@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <div id="content">
+            <img id="merlegkep" src="/worker.png" alt="" width="320" height="220"/>    
+<h3>Dolgozok:</h3>
+
+    <div    th:each="dolgozo : ${dolgozoList}">
+        <b style="color: royalblue"   th:text="${dolgozo.id}">id</b><b>. sorszamu dolgozo (ID) adatai:</b><br>
+            <b style="font-style: italic">Neve: </b><b style="color: royalblue"    th:text="${dolgozo.nev}">nev</b><br>
+            <b style="font-style: italic">Eletkora: </b><b style="color: royalblue"   th:text="${dolgozo.eletkor}">eletkor</b>
+        
+        
+            
+            
+            
+                <form action="#" th:action="@{/dolgozo/list}" method="post">
+   
+          
+            <td><input  th:value="${dolgozo.id}" type="hidden" name="deleteId"  readonly="readonly"></td>
+          
+ 
+
+            <button type="submit">Torles!</button> 
+     
+   
+            </form>
+            
+            
+            
+            
+            
+            
+            
+    
+        <hr>
+    </div>
+
+<form action="http://localhost:8080">
+    <input type="submit" value="Vissza a fomenube" />
+</form>
+      </div>
+</body>
+</html>
