@@ -55,7 +55,19 @@ public class MeresServiceImpl implements MeresService{
      
     }
     
-    
+    @Override
+    public void deleteMeresekWhereHosszLessThanTen(){
+        
+        Iterable<Meres> allMeres = meresRepository.findAll();
+       
+        for (Meres meres : allMeres){
+            if(meres.getHossz() < 10){
+          
+            meresRepository.delete(meres);
+            }
+        }
+        
+    }
 
     @Override
     public void addMeres(Meres meres) {

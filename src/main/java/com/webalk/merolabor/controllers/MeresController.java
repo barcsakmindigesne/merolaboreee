@@ -5,6 +5,7 @@
  */
 package com.webalk.merolabor.controllers;
 
+import com.webalk.merolabor.controllers.model.DolgozoModel;
 import com.webalk.merolabor.entity.Meres;
 import com.webalk.merolabor.controllers.model.MeresModel;
 import com.webalk.merolabor.entity.Dolgozo;
@@ -15,9 +16,12 @@ import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,10 +59,81 @@ public class MeresController implements WebMvcConfigurer{
         this.dolgozoService = dolgozoService;
     }
     
-    @GetMapping("")
-    public String showForm(MeresModel meresModel) {
-        return "meresform";
+    
+
+    
+    
+    
+    @GetMapping("/{id}")
+    public String showForm(@PathVariable(value="id") Long id, Model model){
+      
+             if (!model.containsAttribute("meresModel")) {
+        model.addAttribute("meresModel", new MeresModel());
     }
+  
+        
+             Dolgozo dolgozo;
+             dolgozo = dolgozoService.getDolgozoById(id);
+             
+             
+             
+             //return mav;
+             return "meresform";
+    }
+    
+    
+     @PostMapping("/{id}")
+         public String postMeres(@RequestParam("editId") Long editId, @Valid MeresModel meresModel, BindingResult bindingResult, RedirectAttributes ra) {
+     
+                if(bindingResult.hasErrors()){
+
+        
+            ra.addFlashAttribute("org.springframework.validation.BindingResult.meresModel", bindingResult);
+            ra.addFlashAttribute("meresModel", meresModel);       
+               
+        
+        
+        
+        
+        
+            return "redirect:/meres/{id}";
+         
+        }
+             
+             
+        if(dolgozoService.dolgozoExistsById(editId) == false){
+        
+            
+        return "redirect:/meres/{id}";  
+   
+        }
+        
+        Dolgozo dolgozo;
+        dolgozo = dolgozoService.getDolgozoById(editId);
+
+        Date d = new Date();
+       
+        Meres meres = new Meres(dolgozo);
+        meres.setAlkatreszszam(meresModel.getAlkatreszszam());
+        meres.setHossz(meresModel.getHossz());
+        meres.setSuly(meresModel.getSuly());
+        meres.setIdopont(d);
+        meres.setDolgozo(dolgozo);
+        
+        
+        
+
+        System.out.println(meresModel.toString());
+
+        meresService.addMeres(meres);
+        ra.addFlashAttribute("newMeres", meres);
+        return "redirect:/meresresults";
+      
+         }
+    
+    
+    
+    
     
     
     
@@ -78,6 +153,14 @@ public class MeresController implements WebMvcConfigurer{
     }
     
     
+        
+    @GetMapping("/tiznelkisebb")
+    public String deleteTiznelKisebb(){
+        meresService.deleteMeresekWhereHosszLessThanTen();
+        return("homeform");
+    }
+    
+    
     
     @PostMapping("/list") 
     @ResponseBody
@@ -94,10 +177,18 @@ public class MeresController implements WebMvcConfigurer{
     
     
     
+   
+    
+    
+    
+   
     
     
     
     
+    
+    
+    /*
     
     @PostMapping("")
     public String saveMeres(@RequestParam("editId") Long editId, @Valid MeresModel meresModel, BindingResult bindingResult, RedirectAttributes ra){
@@ -107,7 +198,13 @@ public class MeresController implements WebMvcConfigurer{
         }
         
         if(dolgozoService.dolgozoExistsById(editId) == false){
-        return "meresform";
+        
+            
+        return "meresform";  
+            
+            
+            
+            
         }
         
         Dolgozo dolgozo;
@@ -132,6 +229,26 @@ public class MeresController implements WebMvcConfigurer{
         return "redirect:/meresresults";
        
     }
+    
+    */
+    
+    
+    
+    
+    
+    
+ 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     /* Lecserelve a listas torlesre!

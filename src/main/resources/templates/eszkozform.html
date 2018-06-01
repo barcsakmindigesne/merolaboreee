@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Meroeszkoz jogosultsag</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+    </head>
+    <body>
+         <div id="content">
+            <img id="merlegkep" src="/rle.png" alt="" width="320" height="220"/>   
+      <!-- <form action="#" th:action="@{/meres}" th:object="${meresModel}" method="post"> -->
+            
+             <form action="#" th:action="@{/eszkozok/{path}(path=${id})}" th:object="${eszkozModel}" method="post">
+                 
+                 
+                 <h4>        <span th:text="${id}"></span><span>. szamu meroeszkozhoz dolgozo beallitasa</span><br><br></h4>
+                 
+            
+                             
+                             <!--
+               <td><select th:object="${dolgozoList}">
+                    <option value="">--</option>
+                    <option th:object="${dolgozo}"
+                            th:each="dolgozo : ${dolgozoList}"
+                            th:value="${dolgozo.getId()}"
+                            th:text="${dolgozo.getNev()}"</option>
+</select></td>
+            -->                 
+                             
+          
+                          <tr>
+                              <td><b>Valaszd ki a dolgozot a listabol</b>
+                            <select style="width:20em" name="editId">
+                                <option th:each="dolgozo : ${dolgozoList}" th:value="${dolgozo.id}" th:text="${dolgozo.nev}"></option>
+                            </select>
+                        </td>
+                     </tr>     
+                
+               <!-- <input type="" name="editId"  > -->
+       
+  
+          
+        
+                <button type="submit">Mentes</button>
+           
+            
+            
+         
+   
+            
+            
+            
+            
+            
+            
+            
+            
+            
+         </div>
+    </body>
+</html>

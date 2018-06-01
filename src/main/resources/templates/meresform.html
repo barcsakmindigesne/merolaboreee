@@ -15,7 +15,13 @@ and open the template in the editor.
     <body>
          <div id="content">
             <img id="merlegkep" src="meas.jpg" alt="" width="320" height="220"/>
-        <form action="#" th:action="@{/meres}" th:object="${meresModel}" method="post">
+      <!-- <form action="#" th:action="@{/meres}" th:object="${meresModel}" method="post"> -->
+            
+             <form action="#" th:action="@{/meres/{path}(path=${id})}" th:object="${meresModel}" method="post">
+                 
+                 
+                 <h4>        <span th:text="${id}"></span><span>. szamu dolgozohoz meres hozzaadasa</span><br><br></h4>
+                 
             <table>
             <tr>
                 <td>Alkatrész cikkszam (6jegyu):</td>
@@ -34,18 +40,34 @@ and open the template in the editor.
                 <td><input type="text" th:field="*{suly}"></td>
                 <td th:if="${#fields.hasErrors('suly')}" th:errors="*{suly}"> hiba</td>
             </tr>
-                
+                <!--
               <tr>
             <td>Dolgozo ID:</td>
             <td><input  type="text" name="editId"></td>
             <td>
-            </tr>    
+            </tr>    -->
                 
-   
+       <td><input type="hidden" name="editId" th:value="${id}" readonly="readonly"></td>
+       
+  
+          
             <tr>
                 <td><button type="submit">Mentes</button> </td>
             </tr>
         </table>
+            
+            
+         
+   
+            
+            
+            
+            
+            
+            
+            
+            
+            
          </div>
     </body>
 </html>

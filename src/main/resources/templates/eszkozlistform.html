@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <div id="content">
+            <img id="merlegkep" src="/rle.png" alt="" width="320" height="220"/>    
+<h3>Dolgozok:</h3>
+
+    <div    th:each="eszkoz : ${eszkozList}">
+        <b style="color: royalblue"   th:text="${eszkoz.id}">id</b><b>. sorszamu eszkoz (ID) adatai:</b><br>
+            <b style="font-style: italic">Eszkoz megnevezese: </b><b style="color: royalblue"    th:text="${eszkoz.eszkoznev}">nev</b><br>
+            
+       <b>Hasznalatara jogosultak:</b><br>
+              <th:block th:each="dolgozo : ${eszkoz.dolgozoList}">
+                  <b style="color: royalblue"   th:text="${dolgozo.nev}">id</b><b> | </b>
+                </th:block>
+            
+            
+            
+         
+            
+            <form action="#" th:action="@{/eszkozok/{path}(path=${eszkoz.id})}" method="get">
+   
+          
+            <td><input  th:value="${eszkoz.id}" type="hidden" name="id"  readonly="readonly"></td>
+            
+            
+            
+            
+            
+          
+ 
+
+            <button type="submit">Dolgozo hozzaadasa</button> 
+     
+   
+            </form>
+            
+            
+            
+            
+            
+    
+        <hr>
+    </div>
+
+<form action="http://localhost:8080">
+    <input type="submit" value="Vissza a fomenube" />
+</form>
+      </div>
+</body>
+</html>

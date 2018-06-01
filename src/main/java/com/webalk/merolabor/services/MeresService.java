@@ -24,4 +24,5 @@ public interface MeresService {
    public void deleteAllMeresByDolgozo(Dolgozo dolgozo);
    public void deleteMeresById(Long id);
     public boolean meresExistsById(Long id);
+    public void deleteMeresekWhereHosszLessThanTen();
 }

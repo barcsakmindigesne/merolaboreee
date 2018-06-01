@@ -44,7 +44,7 @@ public class DolgozoController implements WebMvcConfigurer{
     private DolgozoService dolgozoService;
      private MeresService meresService;
     
-        @Override
+    @Override
     public void addViewControllers(ViewControllerRegistry registry){
         registry.addViewController("/dolgozoresults").setViewName("dolgozoresults");
     }

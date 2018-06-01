@@ -5,6 +5,7 @@
  */
 package com.webalk.merolabor.controllers.model;
 
+
 import com.webalk.merolabor.entity.Dolgozo;
 import java.util.Date;
 import javax.validation.constraints.Max;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Data;
+
 
 /**
  *
@@ -43,9 +45,5 @@ public class MeresModel {
     private Date idopont;
     private Dolgozo dolgozo;
 
-
-    
-    
-    
     
 }
