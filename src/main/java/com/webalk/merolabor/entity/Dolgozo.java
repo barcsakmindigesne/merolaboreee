@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -21,7 +23,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Dolgozo implements Serializable {
     
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
     private Long id;
     
@@ -33,6 +35,18 @@ public class Dolgozo implements Serializable {
     
     public Dolgozo(){}
 
+    @ManyToMany(mappedBy = "dolgozoList")
+    private List<Eszkoz> eszkozList;
+
+    public List<Eszkoz> getEszkozList() {
+        return eszkozList;
+    }
+
+    public void setEszkozList(List<Eszkoz> eszkozList) {
+        this.eszkozList = eszkozList;
+    }
+    
+    
     
  
     public Long getId() {

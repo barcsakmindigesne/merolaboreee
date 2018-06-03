@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+      <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+    <meta charset="UTF-8">
+    <title>Jogosultsag modositas</title>
+</head>
+<body>
+  <div id="content">
+            <img id="merlegkep" src="rle.png" alt="" width="320" height="220"/>    
+<h2>Jogosultsag modositast hajtottal vegre</h2>
+
+
+        <b>A modositott eszkoz: </b><span th:text="${eszkoznev}"></span><br><br>
+        <b>A jogosultsag modositas jellege: </b><span th:text="${modositas}"></span><br><br>
+        <b>Dolgozo: </b><span th:text="${dolgozonev}"></span><br><br>
+                <br>
+                   
+    <form action="http://localhost:8080">
+        <input type="submit" value="Vissza a fooldalra" />
+    </form>
+                        </div>
+</body>
+</html>

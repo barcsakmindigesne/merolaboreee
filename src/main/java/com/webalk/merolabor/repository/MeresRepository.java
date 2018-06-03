@@ -7,10 +7,13 @@ package com.webalk.merolabor.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import com.webalk.merolabor.entity.Meres;
+import org.springframework.stereotype.Repository;
 /**
  *
  * @author HEM6MC
  */
+
+@Repository
 public interface MeresRepository extends CrudRepository<Meres, Long> {
     Meres getById(Long id);
 }

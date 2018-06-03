@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package com.webalk.merolabor.entity;
+
+import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,14 +13,13 @@ import java.util.List;
  *
  * @author HEM6MC
  */
-
 @Entity
-public class Eszkoz {
-    
-    @GeneratedValue
+public class Eszkoz implements Serializable{
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-    
+
     private String eszkoznev;
 
     public String getEszkoznev() {
@@ -35,11 +36,7 @@ public class Eszkoz {
             joinColumns = @JoinColumn(name = "eszkoz_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "dolgozo_id", referencedColumnName = "id")
     )
-    
-   
- 
-    
-    
+
     private List<Dolgozo> dolgozoList;
 
     public List<Dolgozo> getDolgozoList() {
@@ -58,7 +55,4 @@ public class Eszkoz {
         this.id = id;
     }
 
-
-    
-    
 }

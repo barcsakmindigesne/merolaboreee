@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+      <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+    <meta charset="UTF-8">
+    <title>Ujonnan felvitt dolgozok</title>
+</head>
+<body>
+  <div id="content">
+            <img id="merlegkep" src="rle.png" alt="" width="320" height="220"/>    
+<h2>Uj eszkoz adtal hozza!</h2>
+
+
+        <b>Uj eszkoz megnevezese: </b><span th:text="${newEszkoz.eszkoznev}"></span><br><br>
+                <br>
+                    <p>Majd az eszkozkezelo menuben tudod beallitani, hogy kik jogosultak annak hasznalatara!</p>
+    <form action="http://localhost:8080">
+        <input type="submit" value="Vissza a fooldalra" />
+    </form>
+                        </div>
+</body>
+</html>

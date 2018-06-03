@@ -20,63 +20,47 @@ import org.springframework.stereotype.Service;
  * @author HEM6MC
  */
 @Service
-public class MeresServiceImpl implements MeresService{
-    
-      private MeresRepository meresRepository;
-     
-      @Autowired
-    public void setMeresRepository(MeresRepository meresRepository){
+public class MeresServiceImpl implements MeresService {
+
+    private MeresRepository meresRepository;
+
+    @Autowired
+    public MeresServiceImpl(MeresRepository meresRepository) {
         this.meresRepository = meresRepository;
     }
-    
-    
-     @Override
+
+    @Override
     public List<Meres> getAllMeres() {
         Iterable<Meres> allMeres = meresRepository.findAll();
 
         List<Meres> meresList = new ArrayList<>();
-        for (Meres meres : allMeres){
-           meresList.add(meres);
+        for (Meres meres : allMeres) {
+            meresList.add(meres);
         }
         return meresList;
     }
-    
-    
+
     @Override
     public void deleteAllMeresByDolgozo(Dolgozo dolgozo) {
         Iterable<Meres> allMeres = meresRepository.findAll();
-       
-        for (Meres meres : allMeres){
-            if(meres.getDolgozo() == dolgozo){
-          
-           meresRepository.delete(meres);
+
+        for (Meres meres : allMeres) {
+            if (meres.getDolgozo() == dolgozo) {
+
+                meresRepository.delete(meres);
             }
         }
-     
-    }
-    
-    @Override
-    public void deleteMeresekWhereHosszLessThanTen(){
-        
-        Iterable<Meres> allMeres = meresRepository.findAll();
-       
-        for (Meres meres : allMeres){
-            if(meres.getHossz() < 10){
-          
-            meresRepository.delete(meres);
-            }
-        }
-        
+
     }
 
     @Override
     public void addMeres(Meres meres) {
         meresRepository.save(meres);
     }
-    
+
     @Override
-    public void ujMeres(String alkatreszszam, int hossz, int suly, Date idopont, Dolgozo dolgozo){
-    
+    public void ujMeres(String alkatreszszam, int hossz, int suly, Date idopont, Dolgozo dolgozo) {
+
         Meres meres = new Meres(alkatreszszam, hossz, suly, idopont, dolgozo);
         meresRepository.save(meres);
     }
@@ -85,15 +69,56 @@ public class MeresServiceImpl implements MeresService{
     public Meres getMeresById(Long id) {
         return meresRepository.getById(id);
     }
+
+    @Override
+    public boolean meresExistsById(Long id) {
+        return meresRepository.existsById(id);
+    }
+
+    @Override
+    public void deleteMeresById(Long id) {
+        meresRepository.deleteById(id);
+    }
+    
+    @Override
+    public int getAtlagSuly(){
+        
+        Iterable<Meres> allMeres = meresRepository.findAll();
+        int ossz;
+        int db;
+        ossz = 0;
+        db = 0;
+        
+        for (Meres meres : allMeres) {
+            ossz = ossz + meres.getSuly();
+            db = db + 1;
+        }
+        return (ossz/db);
+        
+    }
     
     
     @Override
-    public boolean meresExistsById(Long id){
-      return meresRepository.existsById(id);
+    public int getAtlagHossz(){
+        
+        Iterable<Meres> allMeres = meresRepository.findAll();
+        int ossz;
+        int db;
+        ossz = 0;
+        db = 0;
+        
+        for (Meres meres : allMeres) {
+            ossz = ossz + meres.getHossz();
+            db = db + 1;
+        }
+        return (ossz/db);
+        
     }
     
-       @Override
-    public void deleteMeresById(Long id){
-        meresRepository.deleteById(id);
-    }
+    
+    
+    
+    
+    
+
 }

@@ -6,10 +6,7 @@
 package com.webalk.merolabor.controllers.model;
 
 
-import com.webalk.merolabor.entity.Meres;
-import com.webalk.merolabor.repository.DolgozoRepository;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;

@@ -14,15 +14,23 @@ import java.util.List;
  *
  * @author HEM6MC
  */
-
-
 public interface MeresService {
-       public List<Meres> getAllMeres();
+
+    public List<Meres> getAllMeres();
+
     public void addMeres(Meres meres);
+
     public Meres getMeresById(Long id);
+
     public void ujMeres(String alkatreszszam, int hossz, int suly, Date idopont, Dolgozo dolgozo);
-   public void deleteAllMeresByDolgozo(Dolgozo dolgozo);
-   public void deleteMeresById(Long id);
+
+    public void deleteAllMeresByDolgozo(Dolgozo dolgozo);
+
+    public void deleteMeresById(Long id);
+
     public boolean meresExistsById(Long id);
-    public void deleteMeresekWhereHosszLessThanTen();
+    
+    public int getAtlagHossz();
+    
+    public int getAtlagSuly();
 }

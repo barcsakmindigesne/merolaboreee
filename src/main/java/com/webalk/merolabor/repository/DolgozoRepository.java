@@ -7,12 +7,14 @@ package com.webalk.merolabor.repository;
 import org.springframework.data.repository.CrudRepository;
 
 import com.webalk.merolabor.entity.Dolgozo;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author HEM6MC
  */
 
+@Repository
 public interface DolgozoRepository extends CrudRepository<Dolgozo, Long>{
     Dolgozo getById(Long id);
 }

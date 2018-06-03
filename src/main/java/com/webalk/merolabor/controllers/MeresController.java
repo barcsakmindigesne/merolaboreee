@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package com.webalk.merolabor.controllers;
-
-import com.webalk.merolabor.controllers.model.DolgozoModel;
 import com.webalk.merolabor.entity.Meres;
 import com.webalk.merolabor.controllers.model.MeresModel;
 import com.webalk.merolabor.entity.Dolgozo;
@@ -35,114 +33,87 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  * @author HEM6MC
  */
-
-
 @Controller
 @RequestMapping("/meres")
-public class MeresController implements WebMvcConfigurer{
-       private MeresService meresService;
-       private DolgozoService dolgozoService;
-       
-           @Override
-    public void addViewControllers(ViewControllerRegistry registry){
+public class MeresController implements WebMvcConfigurer {
+
+    private MeresService meresService;
+    private DolgozoService dolgozoService;
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/meresresults").setViewName("meresresults");
     }
-       
+
     @Autowired
     public void setMeresService(MeresService meresService) {
         this.meresService = meresService;
 
     }
-    
+
     @Autowired
-    public void setDolgozoService(DolgozoService dolgozoService){
+    public void setDolgozoService(DolgozoService dolgozoService) {
         this.dolgozoService = dolgozoService;
     }
-    
-    
 
-    
-    
-    
     @GetMapping("/{id}")
-    public String showForm(@PathVariable(value="id") Long id, Model model){
-      
-             if (!model.containsAttribute("meresModel")) {
-        model.addAttribute("meresModel", new MeresModel());
-    }
-  
-        
-             Dolgozo dolgozo;
-             dolgozo = dolgozoService.getDolgozoById(id);
-             
-             
-             
-             //return mav;
-             return "meresform";
-    }
-    
-    
-     @PostMapping("/{id}")
-         public String postMeres(@RequestParam("editId") Long editId, @Valid MeresModel meresModel, BindingResult bindingResult, RedirectAttributes ra) {
-     
-                if(bindingResult.hasErrors()){
+    public String showForm(@PathVariable(value = "id") Long id, Model model) {
 
+        if (!model.containsAttribute("meresModel")) {
+            model.addAttribute("meresModel", new MeresModel());
+        }
         
+        if (id == null || dolgozoService.dolgozoExistsById(id) == false) {
+            throw new IllegalArgumentException("Hiba! Nem letezo dolgozo.");
+        }
+        
+
+        Dolgozo dolgozo;
+        dolgozo = dolgozoService.getDolgozoById(id);
+
+        //return mav;
+        return "meresform";
+    }
+
+    @PostMapping("/{id}")
+    public String postMeres(@RequestParam("editId") Long editId, @Valid MeresModel meresModel, BindingResult bindingResult, RedirectAttributes ra) {
+
+        if (bindingResult.hasErrors()) {
+
             ra.addFlashAttribute("org.springframework.validation.BindingResult.meresModel", bindingResult);
-            ra.addFlashAttribute("meresModel", meresModel);       
-               
-        
-        
-        
-        
-        
+            ra.addFlashAttribute("meresModel", meresModel);
+
             return "redirect:/meres/{id}";
-         
+
         }
-             
-             
-        if(dolgozoService.dolgozoExistsById(editId) == false){
-        
-            
-        return "redirect:/meres/{id}";  
-   
+
+        if (editId == null || dolgozoService.dolgozoExistsById(editId) == false) {
+            throw new IllegalArgumentException("Hiba! Nem letezo dolgozo.");
         }
-        
+
         Dolgozo dolgozo;
         dolgozo = dolgozoService.getDolgozoById(editId);
 
         Date d = new Date();
-       
+
         Meres meres = new Meres(dolgozo);
         meres.setAlkatreszszam(meresModel.getAlkatreszszam());
         meres.setHossz(meresModel.getHossz());
         meres.setSuly(meresModel.getSuly());
         meres.setIdopont(d);
         meres.setDolgozo(dolgozo);
-        
-        
-        
 
         System.out.println(meresModel.toString());
 
         meresService.addMeres(meres);
         ra.addFlashAttribute("newMeres", meres);
         return "redirect:/meresresults";
-      
-         }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    }
+
     @GetMapping("/list")
     @ResponseBody
-    ModelAndView getAllMeres(){
+    ModelAndView getAllMeres() {
         List<Meres> meresList = meresService.getAllMeres();
 
         ModelAndView mav = new ModelAndView();
@@ -151,18 +122,8 @@ public class MeresController implements WebMvcConfigurer{
 
         return mav;
     }
-    
-    
-        
-    @GetMapping("/tiznelkisebb")
-    public String deleteTiznelKisebb(){
-        meresService.deleteMeresekWhereHosszLessThanTen();
-        return("homeform");
-    }
-    
-    
-    
-    @PostMapping("/list") 
+
+    @PostMapping("/list")
     @ResponseBody
     public ModelAndView listDelete(@RequestParam("deleteId") Long deleteId) {
         meresService.deleteMeresById(deleteId);
@@ -171,119 +132,8 @@ public class MeresController implements WebMvcConfigurer{
         ModelAndView mav = new ModelAndView();
         mav.setViewName("mereslistform");
         mav.addObject("meresList", meresList);
-        
+
         return mav;
     }
-    
-    
-    
-   
-    
-    
-    
-   
-    
-    
-    
-    
-    
-    
-    /*
-    
-    @PostMapping("")
-    public String saveMeres(@RequestParam("editId") Long editId, @Valid MeresModel meresModel, BindingResult bindingResult, RedirectAttributes ra){
 
-        if(bindingResult.hasErrors()){
-            return "meresform";
-        }
-        
-        if(dolgozoService.dolgozoExistsById(editId) == false){
-        
-            
-        return "meresform";  
-            
-            
-            
-            
-        }
-        
-        Dolgozo dolgozo;
-        dolgozo = dolgozoService.getDolgozoById(editId);
-
-        Date d = new Date();
-       
-        Meres meres = new Meres(dolgozo);
-        meres.setAlkatreszszam(meresModel.getAlkatreszszam());
-        meres.setHossz(meresModel.getHossz());
-        meres.setSuly(meresModel.getSuly());
-        meres.setIdopont(d);
-        meres.setDolgozo(dolgozo);
-        
-        
-        
-
-        System.out.println(meresModel.toString());
-
-        meresService.addMeres(meres);
-        ra.addFlashAttribute("newMeres", meres);
-        return "redirect:/meresresults";
-       
-    }
-    
-    */
-    
-    
-    
-    
-    
-    
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /* Lecserelve a listas torlesre!
-    
-     @GetMapping("/delete")
-    public String showDeleteForm() {
-        return "meresdeleteform";
-    }
-    
-    
-      @PostMapping("/delete") 
-     public ModelAndView deleteMeres(@RequestParam("deleteId") Long deleteId) {
-     if(meresService.meresExistsById(deleteId) == false){
-     ModelAndView univerMessage = new ModelAndView();
-     univerMessage.setViewName("univerMessageForm");
-     String uzenet = "A(z) " + deleteId + ". sorszamu (ID) meres nem letezik!";
-     univerMessage.addObject("uzenet", uzenet);
-     return univerMessage;
-     }
-         
-   
-     meresService.deleteMeresById(deleteId);
-     
-     ModelAndView univerMessage = new ModelAndView();
-     univerMessage.setViewName("univerMessageForm");
-     String uzenet = "A(z) " + deleteId + ". sorszamu (ID) meres sikeresen torlesre kerult!";
-     univerMessage.addObject("uzenet", uzenet);
-     return univerMessage;
-        
-     }
-     
-    */
-    
-    
-    
-    
-    
 }

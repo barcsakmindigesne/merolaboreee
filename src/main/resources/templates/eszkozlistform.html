@@ -1,57 +1,59 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-      <div id="content">
+    <head>
+        <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+        <meta charset="UTF-8">
+            <title>Title</title>
+    </head>
+    <body>
+        <div id="content">
             <img id="merlegkep" src="/rle.png" alt="" width="320" height="220"/>    
-<h3>Dolgozok:</h3>
+            <h3>A merolabor eszkoztara:</h3>
 
-    <div    th:each="eszkoz : ${eszkozList}">
-        <b style="color: royalblue"   th:text="${eszkoz.id}">id</b><b>. sorszamu eszkoz (ID) adatai:</b><br>
-            <b style="font-style: italic">Eszkoz megnevezese: </b><b style="color: royalblue"    th:text="${eszkoz.eszkoznev}">nev</b><br>
-            
-       <b>Hasznalatara jogosultak:</b><br>
-              <th:block th:each="dolgozo : ${eszkoz.dolgozoList}">
-                  <b style="color: royalblue"   th:text="${dolgozo.nev}">id</b><b> | </b>
-                </th:block>
-            
-            
-            
-         
-            
-            <form action="#" th:action="@{/eszkozok/{path}(path=${eszkoz.id})}" method="get">
-   
-          
-            <td><input  th:value="${eszkoz.id}" type="hidden" name="id"  readonly="readonly"></td>
-            
-            
-            
-            
-            
-          
- 
+            <div    th:each="eszkoz : ${eszkozList}">
+                <b style="color: royalblue"   th:text="${eszkoz.id}">id</b><b>. sorszamu eszkoz (ID) adatai:</b><br>
+                    <b style="font-style: italic">Eszkoz megnevezese: </b><b style="color: royalblue"    th:text="${eszkoz.eszkoznev}">nev</b><br>
 
-            <button type="submit">Dolgozo hozzaadasa</button> 
-     
-   
-            </form>
-            
-            
-            
-            
-            
-    
-        <hr>
-    </div>
+                        <b>Hasznalatara jogosultak:</b><br>
+                            <th:block th:each="dolgozo : ${eszkoz.dolgozoList}">
+                                <b style="color: royalblue"   th:text="${dolgozo.nev}">id</b><b> | </b>
+                            </th:block>
 
-<form action="http://localhost:8080">
-    <input type="submit" value="Vissza a fomenube" />
-</form>
-      </div>
-</body>
-</html>
+
+
+
+
+                            <form action="#" th:action="@{/eszkozok/{path}(path=${eszkoz.id})}" method="get">
+                                <td><input  th:value="${eszkoz.id}" type="hidden" name="id"  readonly="readonly"></td>
+                                <button style="width:20em" type="submit">Dolgozo jogosultsag hozzaadasa</button> 
+                            </form>
+
+                            <form action="#" th:action="@{/eszkozok/dolgozoremove/{path}(path=${eszkoz.id})}" method="get">
+                                <td><input  th:value="${eszkoz.id}" type="hidden" name="id"  readonly="readonly"></td>
+                                <button style="width:20em" type="submit">Dolgozo jogosultsag elvetele</button> 
+                            </form>
+
+                            <form action="#" th:action="@{/eszkozok/list}" method="post">
+
+
+                                <td><input  th:value="${eszkoz.id}" type="hidden" name="deleteId"  readonly="readonly"></td>
+
+
+
+                                <button style="width:20em" type="submit">Torles!</button> 
+
+
+                            </form>
+
+
+
+                            <hr>
+                                </div>
+
+                                <form action="http://localhost:8080">
+                                    <input type="submit" value="Vissza a fomenube" />
+                                </form>
+                                </div>
+                                </body>
+                                </html>

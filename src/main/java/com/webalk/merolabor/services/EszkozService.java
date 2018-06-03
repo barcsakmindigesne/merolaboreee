@@ -5,6 +5,7 @@
  */
 package com.webalk.merolabor.services;
 
+import com.webalk.merolabor.entity.Dolgozo;
 import com.webalk.merolabor.entity.Eszkoz;
 import java.util.List;
 
@@ -16,4 +17,8 @@ public interface EszkozService {
     public List<Eszkoz> getAllEszkoz();
     public Eszkoz getEszkozById(Long id);
     public void addEszkoz(Eszkoz eszkoz);
+    public void getAllEszkozAndRemoveDolgozo(Dolgozo dolgozo);
+    public boolean eszkozExistsById(Long id);
+    public void deleteEszkozById(Long id);
+    
 }

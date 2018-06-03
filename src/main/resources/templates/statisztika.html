@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" type="text/css" href="/alapcss.css"/>
+        <meta charset="UTF-8">
+            <title>Statisztika</title>
+    </head>
+    <body>
+        <div id="content">
+            <img id="merlegkep" src="/info.png" alt="" width="320" height="220"/>   
+
+            <h3>Adatbazis statisztika</h3>
+            <b>Lekerdezve: </b><b th:text="${lekerdezve}"></b>
+            <br>
+                <br>
+
+
+
+                <table style="width: 20%;" border="1" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td>Dolgozok szama</td>
+                            <td th:text="${dolgozokszama}">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>Atlagos eletkor</td>
+                            <td th:text="${dolgozokatlageletkora}">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>Meresek szama</td>
+                            <td th:text="${meresekszama}">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>Atlagos mert hossz</td>
+                            <td th:text="${atlaghossz}">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>Atlagos mert suly</td>
+                            <td th:text="${atlagsuly}">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>Eszkozok szama</td>
+                            <td th:text="${eszkozokszama}">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+
+
+
+                <br>
+
+
+                    <form action="http://localhost:8080">
+                        <input type="submit" value="Vissza a fooldalra" />
+                    </form>
+                    </div>
+                    </form>
+                    </body>
+                    </html>
