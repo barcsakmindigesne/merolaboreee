@@ -33,4 +33,6 @@ public interface DolgozoService {
     public int dolgozokAtlagEletkora();
     
     public void removeThisEszkozFromDolgozok(Eszkoz eszkoz);
+    
+    public int atlag(int sum, int db);
 }

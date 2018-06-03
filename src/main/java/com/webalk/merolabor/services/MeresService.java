@@ -33,4 +33,6 @@ public interface MeresService {
     public int getAtlagHossz();
     
     public int getAtlagSuly();
+    
+    public int atlag(int sum, int db);
 }

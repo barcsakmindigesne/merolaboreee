@@ -105,8 +105,13 @@ public class DolgozoServiceImpl implements DolgozoService {
             ossz = ossz + dolgozo.getEletkor();
             db = db + 1;
         }
-        return (ossz/db);
+        return atlag(ossz,db);
         
+    }
+    
+    @Override
+    public int atlag(int sum, int db){
+    return (sum/db);
     }
     
     @Override

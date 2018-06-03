@@ -93,7 +93,7 @@ public class MeresServiceImpl implements MeresService {
             ossz = ossz + meres.getSuly();
             db = db + 1;
         }
-        return (ossz/db);
+        return atlag(ossz, db);
         
     }
     
@@ -111,11 +111,14 @@ public class MeresServiceImpl implements MeresService {
             ossz = ossz + meres.getHossz();
             db = db + 1;
         }
-        return (ossz/db);
+        return atlag(ossz, db);
         
     }
     
-    
+    @Override
+    public int atlag(int sum, int db){
+    return (sum/db);
+    }
     
     
     
