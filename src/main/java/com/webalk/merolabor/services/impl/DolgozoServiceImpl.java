@@ -93,7 +93,7 @@ public class DolgozoServiceImpl implements DolgozoService {
     
     
     @Override
-    public int dolgozokAtlagEletkora(){
+    public float dolgozokAtlagEletkora(){
         
         Iterable<Dolgozo> allDolgozo = dolgozoRepository.findAll();
         int ossz;
@@ -110,8 +110,9 @@ public class DolgozoServiceImpl implements DolgozoService {
     }
     
     @Override
-    public int atlag(int sum, int db){
-    return (sum/db);
+    public float atlag(int sum, int db){
+    float z = (float) sum / (float) db;    
+    return z;
     }
     
     @Override

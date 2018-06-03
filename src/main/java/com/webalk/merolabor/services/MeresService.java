@@ -30,9 +30,9 @@ public interface MeresService {
 
     public boolean meresExistsById(Long id);
     
-    public int getAtlagHossz();
+    public float getAtlagHossz();
     
-    public int getAtlagSuly();
+    public float getAtlagSuly();
     
-    public int atlag(int sum, int db);
+    public float atlag(int sum, int db);
 }

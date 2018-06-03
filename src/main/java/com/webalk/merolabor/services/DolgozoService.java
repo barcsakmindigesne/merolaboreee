@@ -30,9 +30,9 @@ public interface DolgozoService {
     
     public List<Dolgozo> getAllDolgozoWithThisEszkoz(Eszkoz eszkoz);
     
-    public int dolgozokAtlagEletkora();
+    public float dolgozokAtlagEletkora();
     
     public void removeThisEszkozFromDolgozok(Eszkoz eszkoz);
     
-    public int atlag(int sum, int db);
+    public float atlag(int sum, int db);
 }

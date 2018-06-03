@@ -81,7 +81,7 @@ public class MeresServiceImpl implements MeresService {
     }
     
     @Override
-    public int getAtlagSuly(){
+    public float getAtlagSuly(){
         
         Iterable<Meres> allMeres = meresRepository.findAll();
         int ossz;
@@ -99,7 +99,7 @@ public class MeresServiceImpl implements MeresService {
     
     
     @Override
-    public int getAtlagHossz(){
+    public float getAtlagHossz(){
         
         Iterable<Meres> allMeres = meresRepository.findAll();
         int ossz;
@@ -116,8 +116,9 @@ public class MeresServiceImpl implements MeresService {
     }
     
     @Override
-    public int atlag(int sum, int db){
-    return (sum/db);
+    public float atlag(int sum, int db){
+    float z = (float) sum / (float) db;    
+    return z;
     }
     
     

@@ -110,7 +110,8 @@ public class EszkozController implements WebMvcConfigurer {
         List<Dolgozo> dolgozoList = dolgozoService.getAllDolgozoWithoutThisEszkoz(eszkoz);
         
         if(dolgozoList.isEmpty() == true){
-        model.addAttribute("uresuzenet", "A lista ures, mert mar az osszes dolgozo hozza van adva, igy jogosultsagot sem tudsz hozzaadni!");
+        model.addAttribute("message", "A lista ures, mert mar az osszes dolgozo hozza van adva, igy jogosultsagot sem tudsz hozzaadni!");
+        return "error";
         }
         
         
@@ -165,7 +166,8 @@ public class EszkozController implements WebMvcConfigurer {
         
         
         if(dolgozoList.isEmpty() == true){
-        model.addAttribute("uresuzenet", "A lista ures, mert az eszkozhoz egyetlen dolgozo sincs beallitva, igy jogosultsagot sem tudsz elvenni!");
+        model.addAttribute("message", "A lista ures, mert meg egyetlen dolgozo sincs hozzarendelve az eszkozhoz, igy jogosultsagot sem tudsz elvenni!");
+        return "error";
         }
         
         
